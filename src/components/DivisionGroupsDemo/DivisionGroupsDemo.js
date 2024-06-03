@@ -42,6 +42,7 @@ function DivisionGroupsDemo({
         };
 
   return (
+    <LayoutGroup>
     <Card as="section" className={styles.wrapper}>
       <header className={styles.header}>
         <SliderControl
@@ -57,7 +58,7 @@ function DivisionGroupsDemo({
         />
       </header>
 
-      <LayoutGroup>
+      
       <div className={styles.demoWrapper}>
         <div
           className={clsx(styles.demoArea)}
@@ -79,7 +80,7 @@ function DivisionGroupsDemo({
           ))}
         </div>
       </div>
-  </LayoutGroup>
+
 
       {includeRemainderArea && (
         <div className={styles.remainderArea}>
@@ -87,9 +88,10 @@ function DivisionGroupsDemo({
             Remainder Area
           </p>
 
-          {range(remainder).map((index) => {
+          {range(numOfItemsPerGroup*numOfGroups+1, numOfItemsPerGroup*numOfGroups +remainder+1).reverse().map((index) => {
+            const motionId = `${id}-${index}`;
             return (
-              <motion.div layoutId={index} key={index} className={styles.item} />
+              <motion.div layoutId={motionId} key={motionId} className={styles.item} />
             );
           })}
         </div>
@@ -101,6 +103,7 @@ function DivisionGroupsDemo({
         remainder={remainder}
       />
     </Card>
+    </LayoutGroup>
   );
 }
 
